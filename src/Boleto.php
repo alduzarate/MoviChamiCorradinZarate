@@ -2,6 +2,7 @@
 <?php
 namespace TpFinal;
 class Boleto{
+	protected $dia;
 	protected $fecha;
 	protected $hora;
 	protected $tipoboleto;
@@ -10,6 +11,7 @@ class Boleto{
 	protected $linea;
 	protected $id_tarj;
 	public function __construct(Tarjeta $tar, $tipoboleto, $linea, $saldoac = 0){
+		$this->dia = date ('N');
 		$this->fecha = date('d-m-Y');
 		$this->tar->tipoboleto= $t;
 		$this->hora = date('H:m:s');
@@ -33,21 +35,23 @@ class Boleto{
 		}
 		$this->tar->fechaanterior=$this->fecha;
 		$this->tar->horaanterior=$this->hora;
+		$this->tar->lineaanterior=$this->linea;
 	}
 	public function Medio(){
 		$p  = $this->tar->saldo - $this->tar->saldoAcumulado - 4.35;
 		if($p<0){
 			ViajePlusMedio();
 		}
-		else{
+		else{ 
 			$this->tar->saldo = $p;
 			$this->tar->saldoAcumulado = 0;
 			$this->tar->fechaanterior=$this->fecha;
 			$this->tar->horaanterior=$this->hora;
+			$this->tar->lineaanterior=$this->linea;
 		}
 	}
 	
-	public function Transbordo () {
+	public function Trasbordo () {
 		
 	}
 
@@ -56,6 +60,7 @@ class Boleto{
 			$this->tar->saldoAcumulado= $this->tar->saldoAcumulado + 9.70;
 			$this->tar->fechaanterior=$this->fecha;
 			$this->tar->horaanterior=$this->hora;
+			$this->tar->lineaanterior=$this->linea;
 			}
 		}
 		else {
@@ -67,6 +72,7 @@ class Boleto{
 			$this->tar->saldoAcumulado= $this->tar->saldoAcumulado + 4.35;
 			$this->tar->fechaanterior=$this->fecha;
 			$this->tar->horaanterior=$this->hora;
+			$this->tar->lineaanterior=$this->linea;
 			}
 		}
 		else {
