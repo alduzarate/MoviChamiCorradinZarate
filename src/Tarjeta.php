@@ -5,9 +5,19 @@ include 'Boleto.php';
 class Tarjeta {
 protected $saldo;
 protected $id;
-    public function __construct($id){
-    $this->saldo=0;
-    $this->id=$id;
+protected $fechaanterior;
+protected $horaanterior;
+protected $lineaanterior;
+protected $viajesplus;
+    public function __construct($id, $tipo){
+        if (in_array (array("Normal", "MedioBoleto"), $tipo)){
+            $this->tipo = $tipo;
+           }
+        else {
+            echo "El tipo de tarjeta no existe \n";
+        }       
+        $this->saldo=0;
+        $this->id=$id;
     }
     public function saldo() {
         return 0;
@@ -38,6 +48,7 @@ protected $id;
     if( $this->tipoboleto == "MedioBoleto" ){
       $b->Medio();
     }
+    
     else{
       return "Tipo de viaje invalido."
     }
@@ -47,7 +58,6 @@ protected $id;
     {
         $b->viajeBici();
     }
-
   }
 }
 ?>
