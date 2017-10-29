@@ -1,6 +1,7 @@
 <?php
-
 namespace TpFinal;
+include 'Boleto.php';
+
 class Tarjeta {
 protected $saldo;
 protected $id;
@@ -39,20 +40,23 @@ protected $viajesplus;
     }
   }
 
-  public function Viaje(Tarjeta $tar, Boleto $b, Colectivo $c){
-      
-    if ($b->fecha==$this->fechaanterior){
-        if(
-       
-    if($b->tipo == "Normal"){
-        $b->Normal();
+  public function Viaje($transporte, Boleto $b){  
+      if( is_a($transporte,'Colectivo') ){
+    if( $b->tipoboleto == "Normal" ){
+      $b->Normal();
     }
-    if($b->tipo == "MedioBoleto"){
-        $b->Medio();
+    if( $this->tipoboleto == "MedioBoleto" ){
+      $b->Medio();
     }
     
     else{
       return "Tipo de viaje invalido."
+    }
+   }
+      
+    if(is_a($transporte,'Bicicleta') )
+    {
+        $b->viajeBici();
     }
   }
 }
