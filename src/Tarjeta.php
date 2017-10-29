@@ -4,7 +4,15 @@ namespace TpFinal;
 class Tarjeta {
 protected $saldo;
 protected $id;
-    public function __construct($id){
+protected $fechaanterior;
+protected $horaanterior;
+    public function __construct($id, $tipo){
+    if (in_array (array("Normal", "MedioBoleto"), $tipo)){
+        $this->tipo = $tipo;
+    }
+    else {
+        echo "El tipo de tarjeta no existe \n";
+    }       
     $this->saldo=0;
     $this->id=$id;
     }
@@ -31,19 +39,15 @@ protected $id;
 
   public function Viaje(Tarjeta $tar){
     $b = new Boleto();
-
     if($b->tipo == "Normal"){
       $b->Normal();
     }
-    if($this->tipo == "MedioBoleto"){
+    if($b->tipo == "MedioBoleto"){
       $b->Medio();
     }
     else{
       return "Tipo de viaje invalido."
     }
-    
-
-
   }
 }
 ?>
