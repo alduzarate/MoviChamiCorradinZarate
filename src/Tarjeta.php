@@ -6,6 +6,7 @@ protected $saldo;
 protected $id;
 protected $fechaanterior;
 protected $horaanterior;
+protected $lineaanterior;
     public function __construct($id, $tipo){
         if (in_array (array("Normal", "MedioBoleto"), $tipo)){
             $this->tipo = $tipo;
@@ -38,13 +39,17 @@ protected $horaanterior;
   }
 
   public function Viaje(Tarjeta $tar){
-    $b = new Boleto();
+  $b = new Boleto();
+    if ($b->fecha==$this->fechaanterior){
+        if($b->dia<=5 && $b->hora<='22:00:00' && $b->hora>='06:00:00' && $b->hora-$this->horaanterior<=
+       
     if($b->tipo == "Normal"){
-      $b->Normal();
+        $b->Normal();
     }
     if($b->tipo == "MedioBoleto"){
-      $b->Medio();
+        $b->Medio();
     }
+    
     else{
       return "Tipo de viaje invalido."
     }
