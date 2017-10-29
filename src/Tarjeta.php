@@ -7,14 +7,14 @@ protected $id;
 protected $fechaanterior;
 protected $horaanterior;
     public function __construct($id, $tipo){
-    if (in_array (array("Normal", "MedioBoleto"), $tipo)){
-        $this->tipo = $tipo;
-    }
-    else {
-        echo "El tipo de tarjeta no existe \n";
-    }       
-    $this->saldo=0;
-    $this->id=$id;
+        if (in_array (array("Normal", "MedioBoleto"), $tipo)){
+            $this->tipo = $tipo;
+           }
+        else {
+            echo "El tipo de tarjeta no existe \n";
+        }       
+        $this->saldo=0;
+        $this->id=$id;
     }
     public function saldo() {
         return 0;
