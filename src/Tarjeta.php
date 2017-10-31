@@ -16,6 +16,7 @@ protected $linea_anterior;
     $this->id=$id;
     $this->tipo=$tipotarjeta;
     $this->saldoAcumulado=0;
+    $this->fechaanterior=new DateTime("now");
     }
     
     public function saldo() {
@@ -44,7 +45,7 @@ protected $linea_anterior;
     public function Viaje($transporte){ 
         if( (is_a($transporte,'Colectivo')) ){
 			print "entra el if is_a\n";
-            $this->fechatras = new DateTime ("now");
+            $this->fechatras = new \DateTime ("now");
             $this->diasemana = date('N');
             $h=date('G');
             $diff = ($this->fechaanterior)->diff($this->fechatras);
