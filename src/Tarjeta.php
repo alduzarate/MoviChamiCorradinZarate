@@ -1,6 +1,7 @@
 <?php
 namespace TpFinal;
 include 'Boleto.php';
+
 class Tarjeta {
 public $saldo;      //lo pongo public nomas porque sino  falla el test
 public $saldoAcumulado; //lo pongo public nomas porque sino  falla el test
