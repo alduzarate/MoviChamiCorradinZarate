@@ -16,6 +16,7 @@ protected $linea_anterior;
     $this->id=$id;
     $this->tipo=$tipotarjeta;
     $this->saldoAcumulado=0;
+    $this->fechaanterior=new DateTime("now");
     }
     
     public function saldo() {
@@ -76,7 +77,8 @@ protected $linea_anterior;
             else {
             $this->saldo = $p;
             $this->saldoAcumulado = 0;
-            $this->fechaanterior=$this->fechatras;
+            $this->
+		    rior=$this->fechatras;
             $this->diaanterior=$this->diasemana;
         }
        }
