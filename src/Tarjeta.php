@@ -5,10 +5,10 @@ class Tarjeta {
 public $saldo;      //lo pongo public nomas porque sino  falla el test
 public $saldoAcumulado; //lo pongo public nomas porque sino  falla el test
 public $id;     //lo pongo public nomas porque sino  falla el test
-protected $fechaanterior;
+public $fechaanterior;
 protected $diaanterior;
 public $tipo;       //lo pongo public nomas porque sino  falla el test
-protected $fechatras;
+public $fechatras;
 protected $diasemana;
 protected $linea_anterior;
     public function __construct($id,$tipotarjeta){
@@ -44,26 +44,28 @@ protected $linea_anterior;
   }
     public function Viaje($transporte){ 
         if( (is_a($transporte,'Colectivo')) ){
+			print "entra el if is_a\n";
             $this->fechatras = new DateTime ("now");
             $this->diasemana = date('N');
             $h=date('G');
             $diff = ($this->fechaanterior)->diff($this->fechatras);
             
             if($this->linea_anterior != $transporte->linea){
+				print "comillas no es igual que la linea\n";
                 $this->linea_anterior= $transporte->linea;
-              
-                if( ((( ($this->diasemana>6) && ($this->h>=6 && $this->h<=22) ) || ( ($this->diasemana==6) && ($this->h>=6 && $this->h<=14))) && ( ( (($this->diff->h) * 60) + $this->diff->i) >= 60) || ( ( (($this->diff->h) * 60) + $this->diff->i) >= 90)) ){
+             
+                if( ((( ($this->diasemana>6) && ($this->h>=6 && $this->h<=22) ) || ( ($this->diasemana==6) && ($this->h>=6 && $this->h<=14))) && ( ( (($diff->h) * 60) + $diff->i) >= 60) || ( ( (($diff->h) * 60) + $diff->i) >= 90)) ){
                     $this->Trasbordo();
                 }
 			}
-      
+            else{
                 if ($this->tipo == "Medio"){
                     $this->Medio();
                 }
                 else{
                 $this->Normal();
                 }
-            
+            }
 		}
         if(is_a($transporte,'Bicicleta') ) {
             $this->viajeBici();
@@ -114,8 +116,7 @@ protected $linea_anterior;
             $this->fechaanterior=$this->fecha;
             $this->horaanterior=$this->hora;
         }
-        $this->getBoleto();
+		$this->getBoleto();
     
     }
 }
-?>
