@@ -79,8 +79,7 @@ protected $linea_anterior;
             else {
             $this->saldo = $p;
             $this->saldoAcumulado = 0;
-            $this->
-		    rior=$this->fechatras;
+            $this->fechaanterior=$this->fechatras;
             $this->diaanterior=$this->diasemana;
         }
        }
